@@ -1,16 +1,7 @@
-from random_word import RandomWords
-import enchant
+import pickledb
+import random
 
-r_generate = RandomWords()
-d = enchant.Dict("en_US")
-words = []
+db = pickledb.load("words.db", False)
 
-
-word = r_generate.get_random_word(hasDictionaryDef = "true", minLength = 5, maxLength = 5)
-while not d.check(word):
-    word = r_generate.get_random_word(hasDictionaryDef = "true", minLength = 5, maxLength = 5)
-words.append(word)
-
-print(words) 
-
-
+words = list(db.getall())
+print(len(words))
